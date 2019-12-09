@@ -10,12 +10,12 @@ public class ConfigFileReader {
 
     public static void readPropertiesFile() {
         String propertyFile = "testconfig.properties";
-        FileInputStream inputFileStream = null;
+        FileInputStream fis = null;
 
         try {
             prop = new Properties();
             String configFilePath =System.getProperty("user.dir")+"/src/test/testdata/config/"+propertyFile;
-            FileInputStream fis = new FileInputStream(new File(configFilePath));
+            fis = new FileInputStream(new File(configFilePath));
 
             prop.load(fis);
 
