@@ -6,15 +6,15 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 
 public class ConfigFileReader {
-    private Properties prop;
+    private static Properties prop;
 
-    public ConfigFileReader() {
+    public static void readPropertiesFile() {
         String propertyFile = "testconfig.properties";
         FileInputStream inputFileStream = null;
 
         try {
-            this.prop = new Properties();
-            String configFilePath =System.getProperty("user.dir")+"/src/test/resources/config/"+propertyFile;
+            prop = new Properties();
+            String configFilePath =System.getProperty("user.dir")+"/src/test/testdata/config/"+propertyFile;
             FileInputStream fis = new FileInputStream(new File(configFilePath));
 
             prop.load(fis);
@@ -24,14 +24,16 @@ public class ConfigFileReader {
         }
     }
 
-    public String getProperty(String key) {
+    public static String getProperty(String key) {
+        readPropertiesFile();
         return prop.getProperty(key);
     }
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         ConfigFileReader cfg = new ConfigFileReader();
-        System.out.println("*******"+cfg.getProperty("browser"));
+        System.out.println("*******"+getProperty("browser"));
+        System.out.println("*******"+getProperty("chrome_driver_path"));
 
-    }
+    }*/
 
 }
