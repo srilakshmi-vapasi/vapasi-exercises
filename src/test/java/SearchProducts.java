@@ -3,18 +3,23 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import suite.SuiteManager;
 import testdata.LoginCredentials;
 import util.ConfigFileReader;
 import util.DriverManager;
 
 import java.util.List;
 
-public class SearchProducts extends LoginSpree {
+public class SearchProducts extends SuiteManager {
 
     @BeforeClass
     public void spreeLogin() {
-        LoginSpree login = new LoginSpree();
-        login.verifyLoginLogout(ConfigFileReader.getProperty("email"),ConfigFileReader.getProperty("password"));
+        //LoginSpree login = new LoginSpree();
+        //login.verifyLoginLogout(ConfigFileReader.getProperty("email"),ConfigFileReader.getProperty("password"));
+        DriverManager.driver.findElement(By.id("link-to-login")).click();
+        DriverManager.driver.findElement(By.id("spree_user_email")).sendKeys(ConfigFileReader.getProperty("email"));
+        DriverManager.driver.findElement(By.id("spree_user_password")).sendKeys(ConfigFileReader.getProperty("password"));
+        DriverManager.driver.findElement(By.name("commit")).click();
     }
     @Test
     public void searchForItem() {

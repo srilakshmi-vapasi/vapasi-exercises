@@ -6,6 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.BasePage;
+import pages.HomePage;
+import pages.LoginPage;
 import suite.SuiteManager;
 import testdata.LoginCredentials;
 import util.ConfigFileReader;
@@ -20,12 +23,8 @@ public class LoginSpree extends SuiteManager {
         email = ConfigFileReader.getProperty("email");
         pwd = ConfigFileReader.getProperty("password");
     }*/
-    @Test (dataProvider = "LoginCredentials", dataProviderClass = LoginCredentials.class)
+    //@Test (dataProvider = "LoginCredentials", dataProviderClass = LoginCredentials.class)
     public void verifyLoginLogout(String email,String pwd)  {
-        /*if(DriverManager.driver.findElements(By.id("link-to-login")).size()>0) {
-            DriverManager.driver.findElement(By.id("link-to-login")).click();
-        }*/
-
         if(DriverManager.driver.findElements(By.linkText("Logout")).size()>0) {
             DriverManager.driver.findElement(By.linkText("Logout")).click();
         }
@@ -42,5 +41,11 @@ public class LoginSpree extends SuiteManager {
             System.out.println("Login failed ....");
         }
 
+    }
+    @Test
+    public void testLogin() {
+        BasePage bp = new BasePage();
+        LoginPage lp = bp.clickLoginButton();
+        HomePage hp = lp.clickSignIn();
     }
 }
