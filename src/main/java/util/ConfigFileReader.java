@@ -3,6 +3,7 @@ package util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigFileReader {
@@ -15,11 +16,11 @@ public class ConfigFileReader {
         try {
             prop = new Properties();
             String configFilePath =System.getProperty("user.dir")+"/src/test/testdata/config/"+propertyFile;
-            fis = new FileInputStream(new File(configFilePath));
-
+            fis = new FileInputStream(configFilePath);
             prop.load(fis);
-
-        }catch(Exception e){
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }catch(IOException e){
             e.printStackTrace();
         }
     }
