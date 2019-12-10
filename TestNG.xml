@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNG Packages Spree Test Suite">
+    <test name="Spree Login Test" verbose="2">
+        <!--<packages>
+            <package name="com.spree.test"></package>
+        </packages>-->
+        <classes>
+            <class name="LoginSpree" />
+        </classes>
+    </test>
+</suite>

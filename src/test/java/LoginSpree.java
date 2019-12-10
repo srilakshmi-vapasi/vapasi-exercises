@@ -1,43 +1,46 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
+import suite.SuiteManager;
+import testdata.LoginCredentials;
+import util.ConfigFileReader;
+import util.DriverManager;
 import java.util.concurrent.TimeUnit;
 
-public class LoginSpree {
-    public static WebDriver driver;
-    public static String email;
-    public static String pwd;
+public class LoginSpree extends SuiteManager {
+    /*private String email;
+    private String pwd;
+    @BeforeTest
+    public void readLoginProps() {
+        email = ConfigFileReader.getProperty("email");
+        pwd = ConfigFileReader.getProperty("password");
+    }*/
+    @Test (dataProvider = "LoginCredentials", dataProviderClass = LoginCredentials.class)
+    public void verifyLoginLogout(String email,String pwd)  {
+        /*if(DriverManager.driver.findElements(By.id("link-to-login")).size()>0) {
+            DriverManager.driver.findElement(By.id("link-to-login")).click();
+        }*/
 
-    @BeforeClass
-    public void setupTestData() {
-        System.setProperty("webdriver.chrome.driver","/Users/techops/Downloads/chromedriver");
-        driver = new ChromeDriver();
-        email = "test123@gmail.com";
-        pwd = "test123";
-        driver.get("https://spree-vapasi-prod.herokuapp.com");
-    }
-
-    @Test
-    public void verifyLoginLogout() throws Exception {
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-        driver.findElement(By.id("link-to-login")).click();
-        driver.findElement(By.id("spree_user_email")).sendKeys(email);
-        driver.findElement(By.id("spree_user_password")).sendKeys(pwd);
-        driver.findElement(By.name("commit")).click();
-        String st = driver.findElement(By.xpath("//*[@id='content']/div[1]")).getText();
-
-        //Assert.assertTrue(driver.findElement(By.xpath("//*[@id='content']/div[1]")).isDisplayed());
+        if(DriverManager.driver.findElements(By.linkText("Logout")).size()>0) {
+            DriverManager.driver.findElement(By.linkText("Logout")).click();
+        }
+        DriverManager.driver.findElement(By.id("link-to-login")).click();
+        DriverManager.driver.findElement(By.id("spree_user_email")).sendKeys(email);
+        DriverManager.driver.findElement(By.id("spree_user_password")).sendKeys(pwd);
+        DriverManager.driver.findElement(By.name("commit")).click();
+        String st = DriverManager.driver.findElement(By.xpath("//*[@id='content']/div[1]")).getText();
         //verify login successful message
-        if(driver.findElement(By.xpath("//*[@id='content']/div[1]")).isDisplayed()) {
+        if(DriverManager.driver.findElement(By.xpath("//*[@id='content']/div[1]")).isDisplayed()) {
             Assert.assertEquals("Logged in successfully", st);
             System.out.println("Login Successful..");
         } else{
             System.out.println("Login failed ....");
         }
-        driver.close();
+
     }
 }
