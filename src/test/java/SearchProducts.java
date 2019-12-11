@@ -16,10 +16,10 @@ public class SearchProducts extends SuiteManager {
     public void spreeLogin() {
         //LoginSpree login = new LoginSpree();
         //login.verifyLoginLogout(ConfigFileReader.getProperty("email"),ConfigFileReader.getProperty("password"));
-        DriverManager.driver.findElement(By.id("link-to-login")).click();
+        /*DriverManager.driver.findElement(By.id("link-to-login")).click();
         DriverManager.driver.findElement(By.id("spree_user_email")).sendKeys(ConfigFileReader.getProperty("email"));
         DriverManager.driver.findElement(By.id("spree_user_password")).sendKeys(ConfigFileReader.getProperty("password"));
-        DriverManager.driver.findElement(By.name("commit")).click();
+        DriverManager.driver.findElement(By.name("commit")).click();*/
     }
     @Test
     public void searchForItem() {

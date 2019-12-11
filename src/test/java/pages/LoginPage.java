@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -28,9 +29,12 @@ public class LoginPage extends SuiteManager {
     public HomePage clickSignIn() {
         email.sendKeys(ConfigFileReader.getProperty("email"));
         pwd.sendKeys(ConfigFileReader.getProperty("password"));
-        WebDriverWait wait = new WebDriverWait(DriverManager.driver,3000);
-        wait.until(ExpectedConditions.visibilityOf(signIn));
+        //WebDriverWait wait = new WebDriverWait(DriverManager.driver,3000);
+        new WebDriverWait(DriverManager.driver,3000).until(ExpectedConditions.visibilityOf(signIn));
         signIn.click();
+
+        //Actions builder = new Actions(DriverManager.driver);
+        //builder.
         return new HomePage();
     }
 }

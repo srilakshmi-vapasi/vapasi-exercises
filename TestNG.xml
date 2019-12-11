@@ -7,6 +7,8 @@
         </packages>-->
         <classes>
             <class name="LoginSpree" />
+            <class name="SearchProducts"/>
+            <!--<class name="SpreeAccountCreation"/>-->
         </classes>
     </test>
 </suite>
