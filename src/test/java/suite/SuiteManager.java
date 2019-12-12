@@ -3,9 +3,7 @@ package suite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import util.ConfigFileReader;
 import util.DriverManager;
 
@@ -16,8 +14,11 @@ public class SuiteManager {
     private static ConfigFileReader cfg;
 
     @BeforeSuite
-    public void startDriver() throws Exception {
-        driver = DriverManager.getDriverInstance();
+    @Parameters({"browser"})
+    //@DataProvider(name = "BrowserData")
+    public void startDriver(String browser) throws Exception {
+        System.out.println("Browser is ...."+browser);
+        driver = DriverManager.getDriverInstance(browser);
     }
 
     @AfterSuite
