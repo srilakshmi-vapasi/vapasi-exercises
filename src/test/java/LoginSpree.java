@@ -16,13 +16,7 @@ import util.DriverManager;
 import java.util.concurrent.TimeUnit;
 
 public class LoginSpree extends SuiteManager {
-    /*private String email;
-    private String pwd;
-    @BeforeTest
-    public void readLoginProps() {
-        email = ConfigFileReader.getProperty("email");
-        pwd = ConfigFileReader.getProperty("password");
-    }*/
+
     //@Test (dataProvider = "LoginCredentials", dataProviderClass = LoginCredentials.class)
     public void verifyLoginLogout(String email,String pwd)  {
         if(DriverManager.driver.findElements(By.linkText("Logout")).size()>0) {
@@ -42,7 +36,7 @@ public class LoginSpree extends SuiteManager {
         }
 
     }
-    @Test
+    //@Test
     public void testLogin() {
         BasePage bp = new BasePage();
         LoginPage lp = bp.clickLoginButton();

@@ -22,6 +22,7 @@ public class DriverManager {
     public static WebDriver getDriverInstance()  {
         String chrome_driver_path = System.getProperty("user.dir")+ConfigFileReader.getProperty("chrome_driver_path");
         if(ConfigFileReader.getProperty("browser").equals("chrome")) {
+            System.setProperty("webdriver.chrome.driver", chrome_driver_path);
             driver = new ChromeDriver();
         }
         else if(ConfigFileReader.getProperty("browser").equals("firefox")) {

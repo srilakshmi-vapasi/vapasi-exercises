@@ -4,12 +4,10 @@
     <parameter name="browser" value="firefox" />
     <!--<parameter name="browser" value="firefox,chrome" />-->
     <test name="Spree Login Test" verbose="2">
-        <!--<packages>
-            <package name="com.spree.test"></package>
-        </packages>-->
+
         <classes>
-            <class name="LoginSpree" />
-            <!--<class name="SearchProducts"/>
+            <class name="SearchProducts" />
+            <!--<class name="LoginSpree"/>
             <class name="SpreeAccountCreation"/>-->
         </classes>
     </test>

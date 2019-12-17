@@ -14,11 +14,12 @@ public class SuiteManager {
     private static ConfigFileReader cfg;
 
     @BeforeSuite
-    @Parameters({"browser"})
+    //@Parameters({"browser"})
     //@DataProvider(name = "BrowserData")
-    public void startDriver(String browser) throws Exception {
-        System.out.println("Browser is ...."+browser);
-        driver = DriverManager.getDriverInstance(browser);
+    //public void startDriver(String browser) throws Exception {
+    public void startDriver() throws Exception {
+        //driver = DriverManager.getDriverInstance(browser);
+        driver = DriverManager.getDriverInstance();
     }
 
     @AfterSuite
