@@ -6,20 +6,19 @@ import java.lang.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.asserts.*;
+import suite.SuiteManager;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class SpreeAccountCreation {
+public class AccountCreationTest extends SuiteManager {
     public static WebDriver driver;
     public static String email;
     public static String pwd;
 
     //constructor to initialize web driver
-    public SpreeAccountCreation() {
+    public AccountCreationTest() {
         System.setProperty("webdriver.chrome.driver","/Users/techops/Downloads/chromedriver");
         driver = new ChromeDriver();
         email = "test123@gmail.com";
@@ -28,7 +27,7 @@ public class SpreeAccountCreation {
     }
 
     public static void main(String args[]) throws Exception {
-        SpreeAccountCreation sc = new SpreeAccountCreation();
+        AccountCreationTest sc = new AccountCreationTest();
         //sc.createUserAccount();
         sc.checkoutProductFromSearch();
     }

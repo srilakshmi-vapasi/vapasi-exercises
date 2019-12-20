@@ -6,9 +6,9 @@
     <test name="Spree Login Test" verbose="2">
 
         <classes>
-            <class name="SearchProducts" />
-            <!--<class name="LoginSpree"/>
-            <class name="SpreeAccountCreation"/>-->
+            <class name="SearchProductsTest" />
+            <!--<class name="LoginTest"/>
+            <class name="AccountCreationTest"/>-->
         </classes>
     </test>
 </suite>

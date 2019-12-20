@@ -20,22 +20,36 @@ public class SearchPage extends SuiteManager {
     @FindBy(id="products")
     private WebElement searchResultsTable;
 
-    @FindBy(id = "add-to-cart-button")
-    private WebElement addtocartbtn;
-
+    /*
+    search by a product name, read from props file
+    search results should be displayed
+    validate all the products displayed should contain search keyword in product name
+     */
     public List<WebElement>  verifyDisplayingSearchResults() {
-
         if(searchResultsTable.isDisplayed()) {
             Assert.assertTrue(searchResultsTable.isDisplayed());
             //get List of products under products table
             prod = DriverManager.driver.findElements(By.tagName("span"));
-           /* for(int i=0; i<prod.size(); i+=3) {
-                System.out.println(prod.get(i).getText());
-            }*/
         } else {
             System.out.println("No Products for the search criteria...");
         }
-
         return prod;
+    }
+
+    /*
+    search by a product category
+    From the search results, select a product
+    Verify the corresponding product details page displayed
+     */
+    public ProductDetailsPage verifySelectingProdFromSearchResults() {
+        if(searchResultsTable.isDisplayed()) {
+            Assert.assertTrue(searchResultsTable.isDisplayed());
+            prod = DriverManager.driver.findElements(By.tagName("div"));
+            if (prod.size() > 1)
+                DriverManager.driver.findElement(By.xpath("//*[@id='products']/div[2]")).click();
+        } else {
+            System.out.println("No Products for the search criteria");
+        }
+        return new ProductDetailsPage();
     }
 }

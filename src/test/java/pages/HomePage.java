@@ -24,7 +24,7 @@ public class HomePage extends SuiteManager {
     Enter a product in the search input field
     click on search button to see the results
      */
-    public SearchPage verifySearchElements() {
+    public WebElement verifySearchElements() {
         if(searchField.isDisplayed()){
             searchField.click();
             searchField.clear();
@@ -35,8 +35,19 @@ public class HomePage extends SuiteManager {
         } else {
             System.out.println("Search button is not visible...");
         }
+        return searchField;
+    }
+
+    public SearchPage verifySearchResultsCat() {
+        if(searchField.isDisplayed()){
+            searchField.sendKeys(ConfigFileReader.getProperty("searchItem"));
+        }
+        if(DriverManager.driver.findElement(By.cssSelector(".btn.btn-success")).isDisplayed())
+            DriverManager.driver.findElement(By.cssSelector(".btn.btn-success")).click();
+
         return new SearchPage();
     }
+
 
 
 }
